@@ -1,31 +1,36 @@
 package com.example.lumen.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id")
     private Long id;
 
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("category")
     private String category;
-    private int stockLevel;
-    private int reorderPoint;
-    private String action;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @JsonProperty("reorder_point")
+    private int reorderPoint;
+
+    @JsonProperty("stock_level")
+    private int stockLevel;
+    @JsonProperty("actions")
+    private String actions;
+
+
+     public void setId(Long id) {
+         this.id = id;
+     }
 }

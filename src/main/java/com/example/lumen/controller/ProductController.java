@@ -5,6 +5,8 @@ package com.example.lumen.controller;
 import com.example.lumen.model.Product;
 import com.example.lumen.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,8 +25,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product addProduct(@RequestBody Product product) {
-        return productService.addProduct(product);
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        Product savedProduct = productService.addProduct(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
     }
 
     @PutMapping("/{id}")

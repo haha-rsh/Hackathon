@@ -34,12 +34,7 @@ public class ProductService {
     }
 
     public List<Product> searchProducts(String name, String category, Integer stockLevel) {
-        if (name != null) {
-            return productRepository.findByCategory(category);
-        }
-        if (stockLevel != null) {
-            return productRepository.findByStockLevelLessThan(stockLevel);
-        }
-        return productRepository.findAll();
+        return productRepository.searchProducts(name, category, stockLevel);
     }
+
 }
